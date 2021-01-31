@@ -1,0 +1,54 @@
+import datetime                                                                                                               
+                                                                                                                              
+date_object = datetime.date.today()                                                                                           
+print(date_object)                                                                                                            
+                                                                                                                              
+class BankAccount:                                                                                                            
+    def __init__(self, name, email, number):                                                                                  
+        self.name=name                                                                                                        
+        self.email=email                                                                                                      
+        self.number=number                                                                                                    
+        self.balance=0                                                                                                        
+                                                                                                                              
+        #Change interest rate accordingly                                                                                     
+        self.interest_rate=1.04                                                                                               
+                                                                                                                              
+    #For deposits                                                                                                             
+    def deposit(self, amount):                                                                                                
+        self.balance=self.balance+amount                                                                                      
+        print('Your new balance is', self.balance)                                                                            
+    #For withdrawals                                                                                                          
+                                                                                                                              
+    def withdraw(self, amount):                                                                                               
+        if self.balance>=amount:                                                                                              
+            self.balance=self.balance-amount                                                                                  
+            print('Your new balance is', self.balance)                                                                        
+                                                                                                                              
+    #Tack on interest monthly                                                                                                 
+    #Uses DateTime to store when account was first opened                                                                     
+    #Pays interest every 28 days                                                                                              
+                                                                                                                              
+    def interests(self):                                                                                                      
+        if self.balance>=1:                                                                                                   
+            while date_object.day==28:                                                                                        
+                self.balance=self.balance*self.interest_rate                                                                  
+                print('Your new balance is', self.balance)                                                                    
+                                                                                                                              
+                                                                                                                              
+class Instance(BankAccount):                                                                                                  
+    def call(self):                                                                                                           
+        question=input(f"Hi, Welcome to our Bank {self.name} What would you like to do? Deposit? Withdraw? See Balance?").capi
+        if question== 'Deposit':                                                                                              
+            Amount_Deposit=int(input('How much would you like to deposit?'))                                                  
+            self.balance+=Amount_Deposit                                                                                      
+                                                                                                                              
+        elif question=='Withdraw':                                                                                            
+            Amount_Withdraw=int(input("How much would you like to withdraw?"))                                                
+            if self.balance>=Amount_Withdraw:                                                                                 
+                self.balance-=Amount_Withdraw                                                                                 
+                                                                                                                              
+        elif question=='See Balance':                                                                                         
+            print(self.balance)                                                                                               
+                                                                                                                              
+    def final(self):                                                                                                          
+        print(f"Your new balance is {self.balance} and you will receive your next interest payment in" date_object.today-28)  
